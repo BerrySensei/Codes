@@ -1,0 +1,4911 @@
+#define _USE_MATH_DEFINES
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <conio.h>
+#include <cmath>
+#include <math.h>
+
+/* OpenGL Library */
+#include <glut.h>
+
+int CubeAngle = 0;
+float X = 0.0, Y = 0.0, R = 1.0;
+float RAngle = 0.0;
+float CenterX = 0.0, CenterY = 0.0;
+
+float AngleY = 0.0;
+float AngleX = 0.0;
+float ConeX = 0.0;
+float ConeY = 0.0;
+
+int stacks = 100;
+int slices = 100;
+
+
+ /* Slide Blocks */
+void SideBlock()
+{
+	 glPushMatrix();
+  glTranslatef(0.0, -0.6f, 0.0f);
+    glRotatef(AngleX, 1.0, 0.0, 0.0);
+    glRotatef(AngleY, 0.0, 1.0, 0.0);
+
+	 			glPushMatrix();
+			 /* LEFT-VERTICAL Blocks */
+				glTranslatef(-3.0f, 0.6f, 0.0f);
+			glBegin(GL_QUADS);
+						
+					glNormal3f(0.0f, 0.0f, 1.0f);
+					glColor3f(1.0f, 0.0f, 0.0f);
+					// FRONT
+					glVertex3f(-0.1f, -2.6f, 0.3f);
+					glVertex3f( 0.1f, -2.6f, 0.3f);
+					glVertex3f( 0.1f, 2.6f, 0.3f);
+					glVertex3f(-0.1f, 2.6f, 0.3f);
+
+					glNormal3f(0.0f, 0.0f, -1.0f);
+					glColor3f(0.0f, 1.0f, 0.0f);
+					// BACK
+					glVertex3f(-0.1f, -2.6f, -0.01f);
+					glVertex3f(-0.1f, 2.6f, -0.01f);
+					glVertex3f( 0.1f, 2.6f, -0.01f);
+					glVertex3f( 0.1f, -2.6f, -0.01f); 
+				
+					glNormal3f(-1.0f, 0.0f, 0.0f);
+					glColor3f(0.0f, 0.0f, 1.0f);
+					// LEFT
+					glVertex3f(-0.1f, -2.6f, 0.3f);
+					glVertex3f(-0.1f, 2.6f, 0.3f);
+					glVertex3f(-0.1f, 2.6f, -0.01f);
+					glVertex3f(-0.1f, -2.6f, -0.01f);
+				
+					glNormal3f(1.0f, 0.0f, 0.0f);
+					glColor3f(1.0f, 1.0f, 0.0f);
+					// RIGHT
+					glVertex3f( 0.1f, -2.6f, -0.01f);
+					glVertex3f( 0.1f, 2.6f, -0.01);
+					glVertex3f( 0.1f, 2.6f, 0.3f);
+					glVertex3f( 0.1f, -2.6f, 0.3f);
+				
+					glNormal3f(0.0f, 1.0f, 0.0f);
+					glColor3f(0.0f, 1.0f, 1.0f);
+					// TOP
+					glVertex3f(-0.1f, 2.6f, 0.3f);
+					glVertex3f( 0.1f, 2.6f, 0.3f);
+					glVertex3f( 0.1f, 2.6f, -0.01f);
+					glVertex3f(-0.1f, 2.6f, -0.01f);
+
+					glNormal3f(0.0f, -1.0f, 0.0f);
+					glColor3f(1.0f, 0.0f, 1.0f);
+					// BOTTOM
+					glVertex3f(-0.1f, -2.6f, 0.3f);
+					glVertex3f(-0.1f, -2.6f, -0.01f);
+					glVertex3f( 0.1f, -2.6f, -0.01f);
+					glVertex3f( 0.1f, -2.6f, 0.3f);
+					glEnd();
+				
+				glPopMatrix();
+
+				glPushMatrix();
+			 /* RIGHT-VERTICAL Block */
+				glTranslatef(2.0f, 0.6f, 0.0f);
+			glBegin(GL_QUADS);
+						
+					glNormal3f(0.0f, 0.0f, 1.0f);
+					glColor3f(1.0f, 0.0f, 0.0f);
+					// FRONT
+					glVertex3f(-0.1f, -2.6f, 0.3f);
+					glVertex3f( 0.1f, -2.6f, 0.3f);
+					glVertex3f( 0.1f, 2.6f, 0.3f);
+					glVertex3f(-0.1f, 2.6f, 0.3f);
+
+					glNormal3f(0.0f, 0.0f, -1.0f);
+					glColor3f(0.0f, 1.0f, 0.0f);
+					// BACK
+					glVertex3f(-0.1f, -2.6f, -0.01f);
+					glVertex3f(-0.1f, 2.6f, -0.01f);
+					glVertex3f( 0.1f, 2.6f, -0.01f);
+					glVertex3f( 0.1f, -2.6f, -0.01f); 
+				
+					glNormal3f(-1.0f, 0.0f, 0.0f);
+					glColor3f(0.0f, 0.0f, 1.0f);
+					// LEFT
+					glVertex3f(-0.1f, -2.6f, 0.3f);
+					glVertex3f(-0.1f, 2.6f, 0.3f);
+					glVertex3f(-0.1f, 2.6f, -0.01f);
+					glVertex3f(-0.1f, -2.6f, -0.01f);
+				
+					glNormal3f(1.0f, 0.0f, 0.0f);
+					glColor3f(1.0f, 1.0f, 0.0f);
+					// RIGHT
+					glVertex3f( 0.1f, -2.6f, -0.01f);
+					glVertex3f( 0.1f, 2.6f, -0.01);
+					glVertex3f( 0.1f, 2.6f, 0.3f);
+					glVertex3f( 0.1f, -2.6f, 0.3f);
+				
+					glNormal3f(0.0f, 1.0f, 0.0f);
+					glColor3f(0.0f, 1.0f, 1.0f);
+					// TOP
+					glVertex3f(-0.1f, 2.6f, 0.3f);
+					glVertex3f( 0.1f, 2.6f, 0.3f);
+					glVertex3f( 0.1f, 2.6f, -0.01f);
+					glVertex3f(-0.1f, 2.6f, -0.01f);
+
+					glNormal3f(0.0f, -1.0f, 0.0f);
+					glColor3f(1.0f, 0.0f, 1.0f);
+					// BOTTOM
+					glVertex3f(-0.1f, -2.6f, 0.3f);
+					glVertex3f(-0.1f, -2.6f, -0.01f);
+					glVertex3f( 0.1f, -2.6f, -0.01f);
+					glVertex3f( 0.1f, -2.6f, 0.3f);
+					glEnd();
+				
+				glPopMatrix();
+
+				glPushMatrix();
+			 /* TOP-HORIZONTAL Block */
+				glTranslatef(-0.5f, 3.1f, 0.0f);
+			glBegin(GL_QUADS);
+						
+					glNormal3f(0.0f, 0.0f, 1.0f);
+					glColor3f(1.0f, 0.0f, 0.0f);
+					// FRONT
+					glVertex3f(-2.4f, -0.1f, 0.3f);
+					glVertex3f( 2.4f, -0.1f, 0.3f);
+					glVertex3f( 2.4f, 0.1f, 0.3f);
+					glVertex3f(-2.4f, 0.1f, 0.3f);
+
+					glNormal3f(0.0f, 0.0f, -1.0f);
+					glColor3f(0.0f, 1.0f, 0.0f);
+					// BACK
+					glVertex3f(-2.4f, -0.1f, -0.01f);
+					glVertex3f(-2.4f, 0.1f, -0.01f);
+					glVertex3f( 2.4f, 0.1f, -0.01f);
+					glVertex3f( 2.4f, -0.1f, -0.01f); 
+				
+					glNormal3f(-1.0f, 0.0f, 0.0f);
+					glColor3f(0.0f, 0.0f, 1.0f);
+					// LEFT
+					glVertex3f(-2.4f, -0.1f, 0.3f);
+					glVertex3f(-2.4f, 0.1f, 0.3f);
+					glVertex3f(-2.4f, 0.1f, -0.01f);
+					glVertex3f(-2.4f, -0.1f, -0.01f);
+				
+					glNormal3f(1.0f, 0.0f, 0.0f);
+					glColor3f(1.0f, 1.0f, 0.0f);
+					// RIGHT
+					glVertex3f( 2.4f, -0.1f, -0.01f);
+					glVertex3f( 2.4f, 0.1f, -0.01);
+					glVertex3f( 2.4f, 0.1f, 0.3f);
+					glVertex3f( 2.4f, -0.1f, 0.3f);
+				
+					glNormal3f(0.0f, 1.0f, 0.0f);
+					glColor3f(0.0f, 1.0f, 1.0f);
+					// TOP
+					glVertex3f(-2.4f, 0.1f, 0.3f);
+					glVertex3f( 2.4f, 0.1f, 0.3f);
+					glVertex3f( 2.4f, 0.1f, -0.01f);
+					glVertex3f(-2.4f, 0.1f, -0.01f);
+
+					glNormal3f(0.0f, -1.0f, 0.0f);
+					glColor3f(1.0f, 0.0f, 1.0f);
+					// BOTTOM
+					glVertex3f(-2.4f, -0.1f, 0.3f);
+					glVertex3f(-2.4f, -0.1f, -0.01f);
+					glVertex3f( 2.4f, -0.1f, -0.01f);
+					glVertex3f( 2.4f, -0.1f, 0.3f);
+					glEnd();
+				
+				glPopMatrix();
+
+				glPushMatrix();
+			 /* BOTTOM-HORIZONTAL Block */
+				glTranslatef(-0.5f, -1.9f, 0.0f);
+			glBegin(GL_QUADS);
+						
+					glNormal3f(0.0f, 0.0f, 1.0f);
+					glColor3f(1.0f, 0.0f, 0.0f);
+					// FRONT
+					glVertex3f(-2.4f, -0.1f, 0.3f);
+					glVertex3f( 2.4, -0.1f, 0.3f);
+					glVertex3f( 2.4f, 0.1f, 0.3f);
+					glVertex3f(-2.4f, 0.1f, 0.3f);
+
+					glNormal3f(0.0f, 0.0f, -1.0f);
+					glColor3f(0.0f, 1.0f, 0.0f);
+					// BACK
+					glVertex3f(-2.4f, -0.1f, -0.01f);
+					glVertex3f(-2.4f, 0.1f, -0.01f);
+					glVertex3f( 2.4f, 0.1f, -0.01f);
+					glVertex3f( 2.4f, -0.1f, -0.01f); 
+				
+					glNormal3f(-1.0f, 0.0f, 0.0f);
+					glColor3f(0.0f, 0.0f, 1.0f);
+					// LEFT
+					glVertex3f(-2.4f, -0.1f, 0.3f);
+					glVertex3f(-2.4f, 0.1f, 0.3f);
+					glVertex3f(-2.4f, 0.1f, -0.01f);
+					glVertex3f(-2.4f, -0.1f, -0.01f);
+				
+					glNormal3f(1.0f, 0.0f, 0.0f);
+					glColor3f(1.0f, 1.0f, 0.0f);
+					// RIGHT
+					glVertex3f( 2.4f, -0.1f, -0.01f);
+					glVertex3f( 2.4f, 0.1f, -0.01);
+					glVertex3f( 2.4f, 0.1f, 0.3f);
+					glVertex3f( 2.4f, -0.1f, 0.3f);
+				
+					glNormal3f(0.0f, 1.0f, 0.0f);
+					glColor3f(0.0f, 1.0f, 1.0f);
+					// TOP
+					glVertex3f(-2.4f, 0.1f, 0.3f);
+					glVertex3f( 2.4f, 0.1f, 0.3f);
+					glVertex3f( 2.4f, 0.1f, -0.01f);
+					glVertex3f(-2.4f, 0.1f, -0.01f);
+
+					glNormal3f(0.0f, -1.0f, 0.0f);
+					glColor3f(1.0f, 0.0f, 1.0f);
+					// BOTTOM
+					glVertex3f(-2.4f, -0.1f, 0.3f);
+					glVertex3f(-2.4f, -0.1f, -0.01f);
+					glVertex3f( 2.4f, -0.1f, -0.01f);
+					glVertex3f( 2.4f, -0.1f, 0.3f);
+					glEnd();
+				
+
+				glPopMatrix();
+			glPopMatrix();
+}
+
+void Under() 	/* --- TRIANGLE BELOW --- */
+{
+
+glPushMatrix();
+glTranslatef(-1.8, -0.6f, 0.0f);
+glRotatef(AngleX, 1.0, 0.0, 0.0);
+glRotatef(AngleY, 0.0, 1.0, 0.0);
+
+	glPushMatrix();
+	glTranslatef(-0.8f, 2.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 2.8, slices, stacks);
+	glPopMatrix();	
+
+		glPushMatrix();
+	glTranslatef(-0.5f, 2.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 3.0, slices, stacks);
+	glPopMatrix();	
+
+		glPushMatrix();
+	glTranslatef(-0.2f, 2.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.6, slices, stacks);
+	glPopMatrix();	
+
+		glPushMatrix();
+	glTranslatef(0.1f, 2.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 3.5, slices, stacks);
+	glPopMatrix();	
+
+			glPushMatrix();
+	glTranslatef(0.4f, 2.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.2, slices, stacks);
+	glPopMatrix();	
+
+			glPushMatrix();
+	glTranslatef(0.7f, 2.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 2.5, slices, stacks);
+	glPopMatrix();	
+
+			glPushMatrix();
+	glTranslatef(1.0f, 2.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 3.1, slices, stacks);
+	glPopMatrix();	
+
+				glPushMatrix();
+	glTranslatef(1.3f, 2.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.5, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(1.6f, 2.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 0.9, slices, stacks);
+	glPopMatrix();
+
+
+			glPushMatrix();
+	glTranslatef(1.9f, 2.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.1, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(2.2f, 2.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 3.4, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(2.5f, 2.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 2.6, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(2.8f, 2.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 2.2, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(3.1f, 2.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.7, slices, stacks);
+	glPopMatrix();
+
+		glPushMatrix();
+	glTranslatef(3.4f, 2.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 2.3, slices, stacks);
+	glPopMatrix();
+
+	/* ------ */
+
+	glPushMatrix();
+	glTranslatef(-0.8f, 2.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 2.0, slices, stacks);
+	glPopMatrix();	
+
+		glPushMatrix();
+	glTranslatef(-0.5f, 2.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.0, slices, stacks);
+	glPopMatrix();	
+
+		glPushMatrix();
+	glTranslatef(-0.2f, 2.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 3.0, slices, stacks);
+	glPopMatrix();	
+
+		glPushMatrix();
+	glTranslatef(0.1f, 2.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 0.5, slices, stacks);
+	glPopMatrix();	
+
+			glPushMatrix();
+	glTranslatef(0.4f, 2.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 0.8, slices, stacks);
+	glPopMatrix();	
+
+			glPushMatrix();
+	glTranslatef(0.7f, 2.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.4, slices, stacks);
+	glPopMatrix();	
+
+			glPushMatrix();
+	glTranslatef(1.0f, 2.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.2, slices, stacks);
+	glPopMatrix();	
+
+				glPushMatrix();
+	glTranslatef(1.3f, 2.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 2.7, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(1.6f, 2.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 3.5, slices, stacks);
+	glPopMatrix();
+
+
+			glPushMatrix();
+	glTranslatef(1.9f, 2.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.9, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(2.2f, 2.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 2.9, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(2.5f, 2.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.4, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(2.8f, 2.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.2, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(3.1f, 2.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 3.1, slices, stacks);
+	glPopMatrix();
+
+		glPushMatrix();
+	glTranslatef(3.4f, 2.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 3.3, slices, stacks);
+	glPopMatrix();
+
+	/* ----- */
+
+	glPushMatrix();
+	glTranslatef(-0.8f, 1.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 0.7, slices, stacks);
+	glPopMatrix();	
+
+		glPushMatrix();
+	glTranslatef(-0.5f, 1.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 0.6, slices, stacks);
+	glPopMatrix();	
+
+		glPushMatrix();
+	glTranslatef(-0.2f, 1.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.0, slices, stacks);
+	glPopMatrix();	
+
+		glPushMatrix();
+	glTranslatef(0.1f, 1.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 3.0, slices, stacks);
+	glPopMatrix();	
+
+			glPushMatrix();
+	glTranslatef(0.4f, 1.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 2.1, slices, stacks);
+	glPopMatrix();	
+
+			glPushMatrix();
+	glTranslatef(0.7f, 1.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 3.2, slices, stacks);
+	glPopMatrix();	
+
+			glPushMatrix();
+	glTranslatef(1.0f, 1.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 3.4, slices, stacks);
+	glPopMatrix();	
+
+				glPushMatrix();
+	glTranslatef(1.3f, 1.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 0.9, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(1.6f, 1.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.4, slices, stacks);
+	glPopMatrix();
+
+
+			glPushMatrix();
+	glTranslatef(1.9f, 1.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.3, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(2.2f, 1.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 0.8, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(2.5f, 1.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.6, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(2.8f, 1.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.2, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(3.1f, 1.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.7, slices, stacks);
+	glPopMatrix();
+
+		glPushMatrix();
+	glTranslatef(3.4f, 1.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 2.7, slices, stacks);
+	glPopMatrix();
+
+	/* ---- */
+
+	glPushMatrix();
+	glTranslatef(-0.8f, 1.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 2.5, slices, stacks);
+	glPopMatrix();	
+
+		glPushMatrix();
+	glTranslatef(-0.5f, 1.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.0, slices, stacks);
+	glPopMatrix();	
+
+		glPushMatrix();
+	glTranslatef(-0.2f, 1.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 2.3, slices, stacks);
+	glPopMatrix();	
+
+		glPushMatrix();
+	glTranslatef(0.1f, 1.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 2.7, slices, stacks);
+	glPopMatrix();	
+
+			glPushMatrix();
+	glTranslatef(0.4f, 1.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.8, slices, stacks);
+	glPopMatrix();	
+
+			glPushMatrix();
+	glTranslatef(0.7f, 1.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 2.8, slices, stacks);
+	glPopMatrix();	
+
+			glPushMatrix();
+	glTranslatef(1.0f, 1.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.0, slices, stacks);
+	glPopMatrix();	
+
+				glPushMatrix();
+	glTranslatef(1.3f, 1.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.6, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(1.6f, 1.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.5, slices, stacks);
+	glPopMatrix();
+
+
+			glPushMatrix();
+	glTranslatef(1.9f, 1.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.9, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(2.2f, 1.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 3.1, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(2.5f, 1.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 0.8, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(2.8f, 1.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 0.5, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(3.1f, 1.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.1, slices, stacks);
+	glPopMatrix();
+
+		glPushMatrix();
+	glTranslatef(3.4f, 1.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 2.2, slices, stacks);
+	glPopMatrix();
+
+	/* ---- */
+
+	glPushMatrix();
+	glTranslatef(-0.8f, 0.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 3.3, slices, stacks);
+	glPopMatrix();	
+
+		glPushMatrix();
+	glTranslatef(-0.5f, 0.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.6, slices, stacks);
+	glPopMatrix();	
+
+		glPushMatrix();
+	glTranslatef(-0.2f, 0.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 2.4, slices, stacks);
+	glPopMatrix();	
+
+		glPushMatrix();
+	glTranslatef(0.1f, 0.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 2.7, slices, stacks);
+	glPopMatrix();	
+
+			glPushMatrix();
+	glTranslatef(0.4f, 0.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 0.8, slices, stacks);
+	glPopMatrix();	
+
+			glPushMatrix();
+	glTranslatef(0.7f, 0.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.0, slices, stacks);
+	glPopMatrix();	
+
+			glPushMatrix();
+	glTranslatef(1.0f, 0.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 0.5, slices, stacks);
+	glPopMatrix();	
+
+				glPushMatrix();
+	glTranslatef(1.3f, 0.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 3.0, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(1.6f, 0.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 3.4, slices, stacks);
+	glPopMatrix();
+
+
+			glPushMatrix();
+	glTranslatef(1.9f, 0.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 2.8, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(2.2f, 0.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.6, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(2.5f, 0.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 0.7, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(2.8f, 0.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.1, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(3.1f, 0.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.7, slices, stacks);
+	glPopMatrix();
+
+		glPushMatrix();
+	glTranslatef(3.4f, 0.7f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.5, slices, stacks);
+	glPopMatrix();
+
+	/* ----- */
+
+	glPushMatrix();
+	glTranslatef(-0.8f, 0.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.0, slices, stacks);
+	glPopMatrix();	
+
+		glPushMatrix();
+	glTranslatef(-0.5f, 0.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 2.3, slices, stacks);
+	glPopMatrix();	
+
+		glPushMatrix();
+	glTranslatef(-0.2f, 0.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.8, slices, stacks);
+	glPopMatrix();	
+
+		glPushMatrix();
+	glTranslatef(0.1f, 0.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.0, slices, stacks);
+	glPopMatrix();	
+
+			glPushMatrix();
+	glTranslatef(0.4f, 0.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 3.1, slices, stacks);
+	glPopMatrix();	
+
+			glPushMatrix();
+	glTranslatef(0.7f, 0.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 2.7, slices, stacks);
+	glPopMatrix();	
+
+			glPushMatrix();
+	glTranslatef(1.0f, 0.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 2.9, slices, stacks);
+	glPopMatrix();	
+
+				glPushMatrix();
+	glTranslatef(1.3f, 0.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.9, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(1.6f, 0.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 3.3, slices, stacks);
+	glPopMatrix();
+
+
+			glPushMatrix();
+	glTranslatef(1.9f, 0.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 2.0, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(2.2f, 0.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.2, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(2.5f, 0.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 2.3, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(2.8f, 0.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 3.4, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(3.1f, 0.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.4, slices, stacks);
+	glPopMatrix();
+
+		glPushMatrix();
+	glTranslatef(3.4f, 0.2f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.6, slices, stacks);
+	glPopMatrix();
+
+	/* ----- */
+
+	glPushMatrix();
+	glTranslatef(-0.8f, -0.3f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.8, slices, stacks);
+	glPopMatrix();	
+
+		glPushMatrix();
+	glTranslatef(-0.5f, -0.3f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 2.2, slices, stacks);
+	glPopMatrix();	
+
+		glPushMatrix();
+	glTranslatef(-0.2f, -0.3f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 2.4, slices, stacks);
+	glPopMatrix();	
+
+		glPushMatrix();
+	glTranslatef(0.1f, -0.3f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 2.1, slices, stacks);
+	glPopMatrix();	
+
+			glPushMatrix();
+	glTranslatef(0.4f, -0.3f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 3.2, slices, stacks);
+	glPopMatrix();	
+
+			glPushMatrix();
+	glTranslatef(0.7f, -0.3f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.0, slices, stacks);
+	glPopMatrix();	
+
+			glPushMatrix();
+	glTranslatef(1.0f, -0.3f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 3.5, slices, stacks);
+	glPopMatrix();	
+
+				glPushMatrix();
+	glTranslatef(1.3f, -0.3f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 3.1, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(1.6f, -0.3f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.0, slices, stacks);
+	glPopMatrix();
+
+
+			glPushMatrix();
+	glTranslatef(1.9f, -0.3f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.0, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(2.2f, -0.3f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 2.7, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(2.5f, -0.3f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.6, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(2.8f, -0.3f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 2.3, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(3.1f, -0.3f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.9, slices, stacks);
+	glPopMatrix();
+
+		glPushMatrix();
+	glTranslatef(3.4f, -0.3f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 2.8, slices, stacks);
+	glPopMatrix();
+
+	/* ----- */
+
+	glPushMatrix();
+	glTranslatef(-0.8f, -0.8f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 3.3, slices, stacks);
+	glPopMatrix();	
+
+		glPushMatrix();
+	glTranslatef(-0.5f, -0.8f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.8, slices, stacks);
+	glPopMatrix();	
+
+		glPushMatrix();
+	glTranslatef(-0.2f, -0.8f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 2.9, slices, stacks);
+	glPopMatrix();	
+
+		glPushMatrix();
+	glTranslatef(0.1f, -0.8f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.7, slices, stacks);
+	glPopMatrix();	
+
+			glPushMatrix();
+	glTranslatef(0.4f, -0.8f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 2.6, slices, stacks);
+	glPopMatrix();	
+
+			glPushMatrix();
+	glTranslatef(0.7f, -0.8f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 3.4, slices, stacks);
+	glPopMatrix();	
+
+			glPushMatrix();
+	glTranslatef(1.0f, -0.8f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.0, slices, stacks);
+	glPopMatrix();	
+
+				glPushMatrix();
+	glTranslatef(1.3f, -0.8f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.5, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(1.6f, -0.8f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 2.4, slices, stacks);
+	glPopMatrix();
+
+
+			glPushMatrix();
+	glTranslatef(1.9f, -0.8f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.3, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(2.2f, -0.8f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 2.2, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(2.5f, -0.8f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.1, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(2.8f, -0.8f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.0, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(3.1f, -0.8f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 2.0, slices, stacks);
+	glPopMatrix();
+
+		glPushMatrix();
+	glTranslatef(3.4f, -0.8f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 0.7, slices, stacks);
+	glPopMatrix();
+
+	/* ----- */
+
+	glPushMatrix();
+	glTranslatef(-0.8f, -1.3f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 3.3, slices, stacks);
+	glPopMatrix();	
+
+		glPushMatrix();
+	glTranslatef(-0.5f, -1.3f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 0.9, slices, stacks);
+	glPopMatrix();	
+
+		glPushMatrix();
+	glTranslatef(-0.2f, -1.3f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.4, slices, stacks);
+	glPopMatrix();	
+
+		glPushMatrix();
+	glTranslatef(0.1f, -1.3f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 0.6, slices, stacks);
+	glPopMatrix();	
+
+			glPushMatrix();
+	glTranslatef(0.4f, -1.3f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 0.9, slices, stacks);
+	glPopMatrix();	
+
+			glPushMatrix();
+	glTranslatef(0.7f, -1.3f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 0.8, slices, stacks);
+	glPopMatrix();	
+
+			glPushMatrix();
+	glTranslatef(1.0f, -1.3f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.7, slices, stacks);
+	glPopMatrix();	
+
+				glPushMatrix();
+	glTranslatef(1.3f, -1.3f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 2.4, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(1.6f, -1.3f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 3.1, slices, stacks);
+	glPopMatrix();
+
+
+			glPushMatrix();
+	glTranslatef(1.9f, -1.3f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 2.6, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(2.2f, -1.3f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.0, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(2.5f, -1.3f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 3.5, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(2.8f, -1.3f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 2.5, slices, stacks);
+	glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(3.1f, -1.3f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 1.9, slices, stacks);
+	glPopMatrix();
+
+		glPushMatrix();
+	glTranslatef(3.4f, -1.3f, 0.0f );
+	glRotatef( 180.0, 0.0, 0.0, 0.0 );
+	glutSolidCone(0.5, 3.0, slices, stacks);
+	glPopMatrix();
+
+	glPopMatrix();
+}
+
+void FirstColumn()
+{
+	glPushMatrix();
+   glTranslatef(-1.8, -0.6f, 0.0f);
+    glRotatef(AngleX, 1.0, 0.0, 0.0);
+   glRotatef(AngleY, 0.0, 1.0, 0.0);
+	
+		glPushMatrix();
+	glTranslatef(-0.8, -1.5f, 0.0f);
+	glColor3f(1.0f, 1.0f, 1.0f);
+	 // FIRST COLUMN BLOCK (1-Black)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+			
+			glPopMatrix();
+
+		glPushMatrix();
+	glTranslatef(-0.8f,-0.9f,0.0f);
+	glColor3f(0.25f, 0.25f, 0.25f);
+	 // FIRST COLUMN BLOCK (2-White)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+		glPushMatrix();
+	glTranslatef(-0.8f,-0.3f,0.0f);
+	glColor3f(1.0f, 1.0f, 1.0f);
+	 // FIRST COLUMN BLOCK (3-Black)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(-0.8f,0.3f,0.0f);
+	glColor3f(0.25f, 0.25f, 0.25f);
+	 // FIRST COLUMN BLOCK (4-White)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(-0.8f,0.9f,0.0f);
+	glColor3f(1.0f, 1.0f, 1.0f);
+	 // FIRST COLUMN BLOCK (5-Black)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+				glPushMatrix();
+	glTranslatef(-0.8f,1.5f,0.0f);
+	glColor3f(0.25f, 0.25f, 0.25f);
+	 // FIRST COLUMN BLOCK (6-White)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+				glPushMatrix();
+	glTranslatef(-0.8f,2.1f,0.0f);
+	glColor3f(1.0f, 1.0f, 1.0f);
+	 // FIRST COLUMN BLOCK (7-Black)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+				glPushMatrix();
+	glTranslatef(-0.8f,2.7f,0.0f);
+	glColor3f(0.25f, 0.25f, 0.25f);
+	 // FIRST COLUMN BLOCK (8-White)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+	glPopMatrix();
+}
+
+void SecondColumn()
+{
+	glPushMatrix();
+   glTranslatef(-1.2, -0.6f, 0.0f);
+    glRotatef(AngleX, 1.0, 0.0, 0.0);
+    glRotatef(AngleY, 0.0, 1.0, 0.0);
+	
+		glPushMatrix();
+	glTranslatef(-0.8, -1.5f, 0.0f);
+	glColor3f(0.25f, 0.25f, 0.25f);
+	 // FIRST COLUMN BLOCK (1-Black)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+			
+			glPopMatrix();
+
+		glPushMatrix();
+	glTranslatef(-0.8f,-0.9f,0.0f);
+	glColor3f(1.0f, 1.0f, 1.0);
+	 // FIRST COLUMN BLOCK (2-White)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+		glPushMatrix();
+	glTranslatef(-0.8f,-0.3f,0.0f);
+	glColor3f(0.25f, 0.25f, 0.25f);
+	 // FIRST COLUMN BLOCK (3-Black)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(-0.8f,0.3f,0.0f);
+	glColor3f(1.0f, 1.0f, 1.0);
+	 // FIRST COLUMN BLOCK (4-White)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(-0.8f,0.9f,0.0f);
+	glColor3f(0.25f, 0.25f, 0.25f);
+	 // FIRST COLUMN BLOCK (5-Black)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+				glPushMatrix();
+	glTranslatef(-0.8f,1.5f,0.0f);
+	glColor3f(1.0f, 1.0f, 1.0f);
+	 // FIRST COLUMN BLOCK (6-White)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+				glPushMatrix();
+	glTranslatef(-0.8f,2.1f,0.0f);
+	glColor3f(0.25f, 0.25f, 0.25f);
+	 // FIRST COLUMN BLOCK (7-Black)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+				glPushMatrix();
+	glTranslatef(-0.8f,2.7f,0.0f);
+	glColor3f(1.0f, 1.0f, 1.0f);
+	 // FIRST COLUMN BLOCK (8-White)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+			
+	glPopMatrix();
+}
+
+void ThirdColumn()
+{
+	glPushMatrix();
+   glTranslatef(-0.6, -0.6f, 0.0f);
+    glRotatef(AngleX, 1.0, 0.0, 0.0);
+    glRotatef(AngleY, 0.0, 1.0, 0.0);
+	
+		glPushMatrix();
+	glTranslatef(-0.8, -1.5f, 0.0f);
+	glColor3f(1.0f, 1.0f, 1.0f);
+	 // FIRST COLUMN BLOCK (1-Black)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+			
+			glPopMatrix();
+
+		glPushMatrix();
+	glTranslatef(-0.8f,-0.9f,0.0f);
+	glColor3f(0.25f, 0.25f, 0.25f);
+	 // FIRST COLUMN BLOCK (2-White)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+		glPushMatrix();
+	glTranslatef(-0.8f,-0.3f,0.0f);
+	glColor3f(1.0f, 1.0f, 1.0f);
+	 // FIRST COLUMN BLOCK (3-Black)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(-0.8f,0.3f,0.0f);
+	glColor3f(0.25f, 0.25f, 0.25f);
+	 // FIRST COLUMN BLOCK (4-White)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(-0.8f,0.9f,0.0f);
+	glColor3f(1.0f, 1.0f, 1.0f);
+	 // FIRST COLUMN BLOCK (5-Black)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+				glPushMatrix();
+	glTranslatef(-0.8f,1.5f,0.0f);
+	glColor3f(0.25f, 0.25f, 0.25f);
+	 // FIRST COLUMN BLOCK (6-White)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+				glPushMatrix();
+	glTranslatef(-0.8f,2.1f,0.0f);
+	glColor3f(1.0f, 1.0f, 1.0f);
+	 // FIRST COLUMN BLOCK (7-Black)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+				glPushMatrix();
+	glTranslatef(-0.8f,2.7f,0.0f);
+	glColor3f(0.25f, 0.25f, 0.25f);
+	 // FIRST COLUMN BLOCK (8-White)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+			
+	glPopMatrix();
+}
+
+void FourthColumn()
+	{
+	glPushMatrix();
+   glTranslatef(0.0, -0.6f, 0.0f);
+    glRotatef(AngleX, 1.0, 0.0, 0.0);
+    glRotatef(AngleY, 0.0, 1.0, 0.0);
+	
+		glPushMatrix();
+	glTranslatef(-0.8, -1.5f, 0.0f);
+	glColor3f(0.25f, 0.25f, 0.25f);
+	 // FIRST COLUMN BLOCK (1-Black)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+			
+			glPopMatrix();
+
+		glPushMatrix();
+	glTranslatef(-0.8f,-0.9f,0.0f);
+	glColor3f(1.0f, 1.0f, 1.0);
+	 // FIRST COLUMN BLOCK (2-White)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+		glPushMatrix();
+	glTranslatef(-0.8f,-0.3f,0.0f);
+	glColor3f(0.25f, 0.25f, 0.25f);
+	 // FIRST COLUMN BLOCK (3-Black)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(-0.8f,0.3f,0.0f);
+	glColor3f(1.0f, 1.0f, 1.0);
+	 // FIRST COLUMN BLOCK (4-White)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(-0.8f,0.9f,0.0f);
+	glColor3f(0.25f, 0.25f, 0.25f);
+	 // FIRST COLUMN BLOCK (5-Black)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+				glPushMatrix();
+	glTranslatef(-0.8f,1.5f,0.0f);
+	glColor3f(1.0f, 1.0f, 1.0f);
+	 // FIRST COLUMN BLOCK (6-White)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+				glPushMatrix();
+	glTranslatef(-0.8f,2.1f,0.0f);
+	glColor3f(0.25f, 0.25f, 0.25f);
+	 // FIRST COLUMN BLOCK (7-Black)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+				glPushMatrix();
+	glTranslatef(-0.8f,2.7f,0.0f);
+	glColor3f(1.0f, 1.0f, 1.0f);
+	 // FIRST COLUMN BLOCK (8-White)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+			
+	glPopMatrix();
+}
+
+void FifthColumn()
+		{
+	glPushMatrix();
+   glTranslatef(0.6, -0.6f, 0.0f);
+    glRotatef(AngleX, 1.0, 0.0, 0.0);
+    glRotatef(AngleY, 0.0, 1.0, 0.0);
+	
+		glPushMatrix();
+	glTranslatef(-0.8, -1.5f, 0.0f);
+	glColor3f(1.0f, 1.0f, 1.0f);
+	 // FIRST COLUMN BLOCK (1-Black)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+			
+			glPopMatrix();
+
+		glPushMatrix();
+	glTranslatef(-0.8f,-0.9f,0.0f);
+	glColor3f(0.25f, 0.25f, 0.25f);
+	 // FIRST COLUMN BLOCK (2-White)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+		glPushMatrix();
+	glTranslatef(-0.8f,-0.3f,0.0f);
+	glColor3f(1.0f, 1.0f, 1.0f);
+	 // FIRST COLUMN BLOCK (3-Black)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(-0.8f,0.3f,0.0f);
+	glColor3f(0.25f, 0.25f, 0.25f);
+	 // FIRST COLUMN BLOCK (4-White)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(-0.8f,0.9f,0.0f);
+	glColor3f(1.0f, 1.0f, 1.0f);
+	 // FIRST COLUMN BLOCK (5-Black)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+				glPushMatrix();
+	glTranslatef(-0.8f,1.5f,0.0f);
+	glColor3f(0.25f, 0.25f, 0.25f);
+	 // FIRST COLUMN BLOCK (6-White)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+				glPushMatrix();
+	glTranslatef(-0.8f,2.1f,0.0f);
+	glColor3f(1.0f, 1.0f, 1.0f);
+	 // FIRST COLUMN BLOCK (7-Black)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+				glPushMatrix();
+	glTranslatef(-0.8f,2.7f,0.0f);
+	glColor3f(0.25f, 0.25f, 0.25f);
+	 // FIRST COLUMN BLOCK (8-White)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+			
+	glPopMatrix();
+}
+
+void SixthColumn()
+	{
+	glPushMatrix();
+   glTranslatef(1.2, -0.6f, 0.0f);
+    glRotatef(AngleX, 1.0, 0.0, 0.0);
+    glRotatef(AngleY, 0.0, 1.0, 0.0);
+	
+		glPushMatrix();
+	glTranslatef(-0.8, -1.5f, 0.0f);
+	glColor3f(0.25f, 0.25f, 0.25f);
+	 // FIRST COLUMN BLOCK (1-Black)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+			
+			glPopMatrix();
+
+		glPushMatrix();
+	glTranslatef(-0.8f,-0.9f,0.0f);
+	glColor3f(1.0f, 1.0f, 1.0);
+	 // FIRST COLUMN BLOCK (2-White)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+		glPushMatrix();
+	glTranslatef(-0.8f,-0.3f,0.0f);
+	glColor3f(0.25f, 0.25f, 0.25f);
+	 // FIRST COLUMN BLOCK (3-Black)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(-0.8f,0.3f,0.0f);
+	glColor3f(1.0f, 1.0f, 1.0);
+	 // FIRST COLUMN BLOCK (4-White)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(-0.8f,0.9f,0.0f);
+	glColor3f(0.25f, 0.25f, 0.25f);
+	 // FIRST COLUMN BLOCK (5-Black)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+				glPushMatrix();
+	glTranslatef(-0.8f,1.5f,0.0f);
+	glColor3f(1.0f, 1.0f, 1.0f);
+	 // FIRST COLUMN BLOCK (6-White)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+				glPushMatrix();
+	glTranslatef(-0.8f,2.1f,0.0f);
+	glColor3f(0.25f, 0.25f, 0.25f);
+	 // FIRST COLUMN BLOCK (7-Black)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+				glPushMatrix();
+	glTranslatef(-0.8f,2.7f,0.0f);
+	glColor3f(1.0f, 1.0f, 1.0f);
+	 // FIRST COLUMN BLOCK (8-White)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+			
+	glPopMatrix();
+}
+
+void SeventhColumn()
+		{
+	glPushMatrix();
+   glTranslatef(1.8f, -0.6f, 0.0f);
+    glRotatef(AngleX, 1.0, 0.0, 0.0);
+    glRotatef(AngleY, 0.0, 1.0, 0.0);
+	
+		glPushMatrix();
+	glTranslatef(-0.8, -1.5f, 0.0f);
+	glColor3f(1.0f, 1.0f, 1.0f);
+	 // FIRST COLUMN BLOCK (1-Black)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+			
+			glPopMatrix();
+
+		glPushMatrix();
+	glTranslatef(-0.8f,-0.9f,0.0f);
+	glColor3f(0.25f, 0.25f, 0.25f);
+	 // FIRST COLUMN BLOCK (2-White)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+		glPushMatrix();
+	glTranslatef(-0.8f,-0.3f,0.0f);
+	glColor3f(1.0f, 1.0f, 1.0f);
+	 // FIRST COLUMN BLOCK (3-Black)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(-0.8f,0.3f,0.0f);
+	glColor3f(0.25f, 0.25f, 0.25f);
+	 // FIRST COLUMN BLOCK (4-White)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(-0.8f,0.9f,0.0f);
+	glColor3f(1.0f, 1.0f, 1.0f);
+	 // FIRST COLUMN BLOCK (5-Black)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+				glPushMatrix();
+	glTranslatef(-0.8f,1.5f,0.0f);
+	glColor3f(0.25f, 0.25f, 0.25f);
+	 // FIRST COLUMN BLOCK (6-White)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+				glPushMatrix();
+	glTranslatef(-0.8f,2.1f,0.0f);
+	glColor3f(1.0f, 1.0f, 1.0f);
+	 // FIRST COLUMN BLOCK (7-Black)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+				glPushMatrix();
+	glTranslatef(-0.8f,2.7f,0.0f);
+	glColor3f(0.25f, 0.25f, 0.25f);
+	 // FIRST COLUMN BLOCK (8-White)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+			
+	glPopMatrix();
+}
+
+void EightColumn()
+	{
+	glPushMatrix();
+   glTranslatef(2.4f, -0.6f, 0.0f);
+    glRotatef(AngleX, 1.0, 0.0, 0.0);
+    glRotatef(AngleY, 0.0, 1.0, 0.0);
+	
+		glPushMatrix();
+	glTranslatef(-0.8, -1.5f, 0.0f);
+	glColor3f(0.25f, 0.25f, 0.25f);
+	 // FIRST COLUMN BLOCK (1-Black)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+			
+			glPopMatrix();
+
+		glPushMatrix();
+	glTranslatef(-0.8f,-0.9f,0.0f);
+	glColor3f(1.0f, 1.0f, 1.0);
+	 // FIRST COLUMN BLOCK (2-White)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+		glPushMatrix();
+	glTranslatef(-0.8f,-0.3f,0.0f);
+	glColor3f(0.25f, 0.25f, 0.25f);
+	 // FIRST COLUMN BLOCK (3-Black)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(-0.8f,0.3f,0.0f);
+	glColor3f(1.0f, 1.0f, 1.0);
+	 // FIRST COLUMN BLOCK (4-White)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+			glPushMatrix();
+	glTranslatef(-0.8f,0.9f,0.0f);
+	glColor3f(0.25f, 0.25f, 0.25f);
+	 // FIRST COLUMN BLOCK (5-Black)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+				glPushMatrix();
+	glTranslatef(-0.8f,1.5f,0.0f);
+	glColor3f(1.0f, 1.0f, 1.0f);
+	 // FIRST COLUMN BLOCK (6-White)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+				glPushMatrix();
+	glTranslatef(-0.8f,2.1f,0.0f);
+	glColor3f(0.25f, 0.25f, 0.25f);
+	 // FIRST COLUMN BLOCK (7-Black)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+
+				glPushMatrix();
+	glTranslatef(-0.8f,2.7f,0.0f);
+	glColor3f(1.0f, 1.0f, 1.0f);
+	 // FIRST COLUMN BLOCK (8-White)
+	glBegin(GL_QUADS);
+						
+			glNormal3f(0.0f, 0.0f, 1.0f);
+			// FRONT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+
+			glNormal3f(0.0f, 0.0f, -1.0f);
+			glColor3f(0.0f, 1.0f, 0.0f);
+			// BACK
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f); 
+				
+			glNormal3f(-1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 1.0f);
+			// LEFT
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+				
+			glNormal3f(1.0f, 0.0f, 0.0f);
+			glColor3f(1.0f, 1.0f, 0.0f);
+			// RIGHT
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, 0.3f, -0.01);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+				
+			glNormal3f(0.0f, 1.0f, 0.0f);
+			glColor3f(0.0f, 1.0f, 1.0f);
+			// TOP
+			glVertex3f(-0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, 0.2f);
+			glVertex3f( 0.3f, 0.3f, -0.01f);
+			glVertex3f(-0.3f, 0.3f, -0.01f);
+
+			glNormal3f(0.0f, -1.0f, 0.0f);
+			glColor3f(1.0f, 0.0f, 1.0f);
+			// BOTTOM
+			glVertex3f(-0.3f, -0.3f, 0.2f);
+			glVertex3f(-0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, -0.01f);
+			glVertex3f( 0.3f, -0.3f, 0.2f);
+			glEnd();
+				
+		glPopMatrix();
+			
+	glPopMatrix();
+}
+
+
+/* Contains all drawings and animations */
+void GameScene()
+{
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+  
+  FirstColumn();
+  SecondColumn();
+	ThirdColumn();
+	FourthColumn();
+	FifthColumn();
+	SixthColumn();
+	SeventhColumn();
+	EightColumn();
+	SideBlock();
+	Under();
+
+  glutSwapBuffers();
+}
+
+
+/* Initiates 3D Rendering (LIGHTING) */
+void initRendering() {
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_COLOR_MATERIAL);
+	glEnable(GL_LIGHTING); //Enable lighting
+	glEnable(GL_LIGHT0); //Enable light #0
+	glEnable(GL_LIGHT1); //Enable light #1
+	glEnable(GL_NORMALIZE); //Automatically normalize normals
+	//glShadeModel(GL_SMOOTH); //Enable smooth shading
+}
+
+/* Controls framerate */
+void Timer(int extra)
+{
+  glutPostRedisplay();
+  glutTimerFunc(10, Timer, extra);
+}
+
+/* Controls the camera */
+void ResizeWindow(int w, int h)
+{
+  float ratio = 1.0 * w / h;
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();
+
+  glViewport(0, 0, w, h);
+  
+  gluPerspective(45.0, ratio, 1, 1000);
+
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+
+  gluLookAt(0.0, 0.0, 10.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+}
+
+void Keys(unsigned char key, int x, int y)
+{
+  switch(key)
+  {
+    case 'a':
+      /* move cube to the left */
+      //CenterX--;
+
+      ConeX -= 1.0;
+      break;
+
+    case 'd':
+      /* move cube to the right */
+      //CenterX++;
+
+      ConeX += 1.0;
+      break;
+    
+    case 'w':
+      ConeY += 1.0;
+      break;
+
+    case 's':
+      ConeY -= 1.0;
+      break;
+
+    case 27:
+      exit(0);
+  }
+}
+
+
+void SpecialKeys(int key, int x, int y)
+{
+  switch(key)
+  {
+    case GLUT_KEY_UP:
+      AngleX -= 1.0;
+      break;
+
+    case GLUT_KEY_DOWN:
+      AngleX += 1.0;
+      break;
+
+    case GLUT_KEY_LEFT:
+      AngleY -= 1.0;
+      break;
+
+    case GLUT_KEY_RIGHT:
+      AngleY += 1.0;
+      break;
+  }
+}
+
+/* Main program */
+void main(int argc, char **argv)
+{
+/* OpenGL Setup */
+  glutInit(&argc, argv);
+  glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
+
+/* Setup drawing window */
+  glutInitWindowPosition(0, 0);
+  //glutInitWindowSize(1000, 1000);
+  glutCreateWindow("Hello OpenGL");
+  initRendering(); // 3D Render
+
+  glutReshapeFunc(ResizeWindow);
+
+    glutDisplayFunc(GameScene);
+  //glutIdleFunc(GameScene);
+
+/* Controls animation speed or FrameRate */
+  glutTimerFunc(0, Timer, 0);
+
+  /* Enable Full Screen View */
+  	glutFullScreen();
+
+/* Enables keyboard controls */
+  glutKeyboardFunc(Keys);
+  glutSpecialFunc(SpecialKeys);
+
+/* Loops the GameScene */
+  glutMainLoop();
+}
