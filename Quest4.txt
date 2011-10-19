@@ -15,6 +15,7 @@ switch(letter * (letter >= 'a' && letter <= 'z'))
 			break;
 		case 97:
 			printf("You entered a Vowel");
+			letter += letter;
 			break;
 		case 98:
 			printf("You entered a Consonant");
@@ -91,154 +92,271 @@ switch(letter * (letter >= 'a' && letter <= 'z'))
 		case 122:
 			printf("You entered a Consonant");
 		break;
+
 }
-switch(letter * (letter >= 'A' && letter <= 'Z'))
+	switch(letter * (letter >= 'A' && letter <= 'Z'))
 	{
-		case 0:
-			break;
-		case 65:
-			printf("That is not a Small Letter!\n");
-			printf("You entered a Vowel");
-			break;
-		case 66:
-			printf("That is not a Small Letter!\n");
-			printf("You entered a Consonant");
-			break;
-		case 67:
-			printf("That is not a Small Letter!\n");
-			printf("You entered a Consonant");
-			break;
-		case 68:
-			printf("That is not a Small Letter!\n");
-			printf("You entered a Consonant");
-			break;
-		case 69:
-			printf("That is not a Small Letter!\n");
-			printf("You entered a Vowel");
-			break;
-		case 70:
-			printf("That is not a Small Letter!\n");
-			printf("You entered a Consonant");
-			break;
-		case 71:
-			printf("That is not a Small Letter!\n");
-			printf("You entered a Consonant");
-			break;
-		case 72:
-			printf("That is not a Small Letter!\n");
-			printf("You entered a Consonant");
-			break;
-		case 73:
-			printf("That is not a Small Letter!\n");
-			printf("You entered a Vowel");
-			break;
-		case 74:
-			printf("That is not a Small Letter!\n");
-			printf("You entered a Consonant");
-			break;
-		case 75:
-			printf("That is not a Small Letter!\n");
-			printf("You entered a Consonant");
-			break;
-		case 76:
-			printf("That is not a Small Letter!\n");
-			printf("You entered a Consonant");
-			break;
-		case 77:
-			printf("That is not a Small Letter!\n");
-			printf("You entered a Consonant");
-			break;
-		case 78:
-			printf("That is not a Small Letter!\n");
-			printf("You entered a Consonant");
-			break;
-		case 79:
-			printf("That is not a Small Letter!\n");
-			printf("You entered a Vowel");
-			break;
-		case 80:
-			printf("That is not a Small Letter!\n");
-			printf("You entered a Consonant");
-			break;
-		case 81:
-			printf("That is not a Small Letter!\n");
-			printf("You entered a Consonant");
-			break;
-		case 82:
-			printf("That is not a Small Letter!\n");
-			printf("You entered a Consonant");
-			break;
-		case 83:
-			printf("That is not a Small Letter!\n");
-			printf("You entered a Consonant");
-			break;
-		case 84:
-			printf("That is not a Small Letter!\n");
-			printf("You entered a Consonant");
-			break;
-		case 85:
-			printf("That is not a Small Letter!\n");
-			printf("You entered a Vowel");
-			break;
-		case 86:
-			printf("That is not a Small Letter!\n");
-			printf("You entered a Consonant");
-			break;
-		case 87:
-			printf("That is not a Small Letter!\n");
-			printf("You entered a Consonant");
-			break;
-		case 88:
-			printf("That is not a Small Letter!\n");
-			printf("You entered a Consonant");
-			break;
-		case 89:
-			printf("That is not a Small Letter!\n");
-			printf("You entered a Consonant");
-			break;
-		case 90:
-			printf("That is not a Small Letter!\n");
-			printf("You entered a Consonant");
-			break;
-}
+			case 0:
+				break;
+			case 65:
+				printf("That is not a Small Letter!\n");
+				printf("You entered a Vowel");
+				break;
+			case 66:
+				printf("That is not a Small Letter!\n");
+				printf("You entered a Consonant");
+				break;
+			case 67:
+				printf("That is not a Small Letter!\n");
+				printf("You entered a Consonant");
+				break;
+			case 68:
+				printf("That is not a Small Letter!\n");
+				printf("You entered a Consonant");
+				break;
+			case 69:
+				printf("That is not a Small Letter!\n");
+				printf("You entered a Vowel");
+				break;
+			case 70:
+				printf("That is not a Small Letter!\n");
+				printf("You entered a Consonant");
+				break;
+			case 71:
+				printf("That is not a Small Letter!\n");
+				printf("You entered a Consonant");
+				break;
+			case 72:
+				printf("That is not a Small Letter!\n");
+				printf("You entered a Consonant");
+				break;
+			case 73:
+				printf("That is not a Small Letter!\n");
+				printf("You entered a Vowel");
+				break;
+			case 74:
+				printf("That is not a Small Letter!\n");
+				printf("You entered a Consonant");
+				break;
+			case 75:
+				printf("That is not a Small Letter!\n");
+				printf("You entered a Consonant");
+				break;
+			case 76:
+				printf("That is not a Small Letter!\n");
+				printf("You entered a Consonant");
+				break;
+			case 77:
+				printf("That is not a Small Letter!\n");
+				printf("You entered a Consonant");
+				break;
+			case 78:
+				printf("That is not a Small Letter!\n");
+				printf("You entered a Consonant");
+				break;
+			case 79:
+				printf("That is not a Small Letter!\n");
+				printf("You entered a Vowel");
+				break;
+			case 80:
+				printf("That is not a Small Letter!\n");
+				printf("You entered a Consonant");
+				break;
+			case 81:
+				printf("That is not a Small Letter!\n");
+				printf("You entered a Consonant");
+				break;
+			case 82:
+				printf("That is not a Small Letter!\n");
+				printf("You entered a Consonant");
+				break;
+			case 83:
+				printf("That is not a Small Letter!\n");
+				printf("You entered a Consonant");
+				break;
+			case 84:
+				printf("That is not a Small Letter!\n");
+				printf("You entered a Consonant");
+				break;
+			case 85:
+				printf("That is not a Small Letter!\n");
+				printf("You entered a Vowel");
+				break;
+			case 86:
+				printf("That is not a Small Letter!\n");
+				printf("You entered a Consonant");
+				break;
+			case 87:
+				printf("That is not a Small Letter!\n");
+				printf("You entered a Consonant");
+				break;
+			case 88:
+				printf("That is not a Small Letter!\n");
+				printf("You entered a Consonant");
+				break;
+			case 89:
+				printf("That is not a Small Letter!\n");
+				printf("You entered a Consonant");
+				break;
+			case 90:
+				printf("That is not a Small Letter!\n");
+				printf("You entered a Consonant");
+				break;
 
-switch(letter * (letter >= '0' && letter <= '9'))
-{
-	case 0:
-		break;
-	case 48:
-		printf("That is not a Small Letter!");
-		break;
-		case 49:
-		printf("That is not a Small Letter!");
-		break;
-		case 50:
-		printf("That is not a Small Letter!");
-		break;
-		case 51:
-		printf("That is not a Small Letter!");
-		break;
-		case 52:
-		printf("That is not a Small Letter!");
-		break;
-		case 53:
-		printf("That is not a Small Letter!");
-		break;
-		case 54:
-		printf("That is not a Small Letter!");
-		break;
-		case 55:
-		printf("That is not a Small Letter!");
-		break;
-		case 56:
-		printf("That is not a Small Letter!");
-		break;
-		case 57:
-		printf("That is not a Small Letter!");
-		break;
+				}
+			switch(letter * (letter >= '0' && letter <= '9'))
+			{
 
-}
+				case 0:
+					break;
+				case 48:
+					printf("That is not a Small Letter!");
+					break;
+					case 49:
+					printf("That is not a Small Letter!");
+					break;
+					case 50:
+					printf("That is not a Small Letter!");
+					break;
+					case 51:
+					printf("That is not a Small Letter!");
+					break;
+					case 52:
+					printf("That is not a Small Letter!");
+					break;
+					case 53:
+					printf("That is not a Small Letter!");
+					break;
+					case 54:
+					printf("That is not a Small Letter!");
+					break;
+					case 55:
+					printf("That is not a Small Letter!");
+					break;
+					case 56:
+					printf("That is not a Small Letter!");
+					break;
+					case 57:
+					printf("That is not a Small Letter!");
+					break;
+			}
 
+			
+			switch(letter * (letter >= 32 && letter <= 47))
+			{				
+				case 32:
+					printf("That is not a Small Letter!");
+					break;
+				case 33:
+					printf("That is not a Small Letter!");
+					break;
+				case 34:
+					printf("That is not a Small Letter!");
+					break;
+				case 35:
+					printf("That is not a Small Letter!");
+					break;
+				case 36:
+					printf("That is not a Small Letter!");
+					break;
+				case 37:
+					printf("That is not a Small Letter!");
+					break;
+				case 38:
+					printf("That is not a Small Letter!");
+					break;
+				case 39:
+					printf("That is not a Small Letter!");
+					break;
+				case 40:
+					printf("That is not a Small Letter!");
+					break;
+				case 41:
+					printf("That is not a Small Letter!");
+					break;
+				case 42:
+					printf("That is not a Small Letter!");
+					break;
+				case 43:
+					printf("That is not a Small Letter!");
+					break;
+				case 44:
+					printf("That is not a Small Letter!");
+					break;
+				case 45:
+					printf("That is not a Small Letter!");
+					break;
+				case 46:
+					printf("That is not a Small Letter!");
+					break;
+				case 47:
+					printf("That is not a Small Letter!");
+					break;
+	
+			}
+
+			switch (letter * (letter >= 58 && letter <= 64))
+			{
+			case 58:
+				printf("That is not a Small Letter!");
+				break;
+			case 59:
+				printf("That is not a Small Letter!");
+				break;
+			case 60:
+				printf("That is not a Small Letter!");
+				break;
+			case 61:
+				printf("That is not a Small Letter!");
+				break;
+			case 62:
+				printf("That is not a Small Letter!");
+				break;
+			case 63:
+				printf("That is not a Small Letter!");
+				break;
+			case 64:
+				printf("That is not a Small Letter!");
+				break;
+			}
+
+			switch (letter * (letter >= 91 && letter <= 96 ))
+			{
+			case 91:
+				printf("That is not a Small Letter!");
+				break;
+			case 92:
+				printf("That is not a Small Letter!");
+				break;
+			case 93:
+				printf("That is not a Small Letter!");
+				break;
+			case 94:
+				printf("That is not a Small Letter!");
+				break;
+			case 95:
+				printf("That is not a Small Letter!");
+				break;
+			case 96:
+				printf("That is not a Small Letter!");
+				break;
+			}
+
+			switch (letter * (letter >= 123 && letter <=126))
+			{
+			case 123:
+				printf("That is not a Small Letter!");
+				break;
+			case 124:
+				printf("That is not a Small Letter!");
+				break;
+			case 125:
+				printf("That is not a Small Letter!");
+				break;
+			case 126:
+				printf("That is not a Small Letter!");
+				break;
+			}
 _getch();
 return;
 }
