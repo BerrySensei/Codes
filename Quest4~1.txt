@@ -1,0 +1,221 @@
+#include<stdio.h>
+#include<conio.h>
+#include<math.h>
+#include<cmath>
+
+#include<glut.h>
+
+float Angle(0.0);
+
+float AngleY = 0.0;
+float AngleX = 0.0;
+float ConeX = 0.0;
+float ConeY = 0.0;
+
+float red=1.0f, blue=1.0f, green=1.0f;
+float RED=1.0f, BLUE = 1.0f, GREEN = 1.0f;
+
+
+/* LIGHTING */
+
+void initRendering() {
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_COLOR_MATERIAL);
+	glEnable(GL_LIGHTING); //Enable lighting
+	glEnable(GL_LIGHT0); //Enable light #0
+	glEnable(GL_LIGHT1); //Enable light #1
+	glEnable(GL_NORMALIZE); //Automatically normalize normals
+	//glShadeModel(GL_SMOOTH); //Enable smooth shading
+}
+
+void GameScene()
+{
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	
+	gluLookAt( 0.0, 8.0, 10.0, 
+				0.0, 0.0, 0.0, 
+				0.0, 1.0, 0.0);
+	glTranslatef(0.0f, 0.0f, 0.0f);
+	
+	////Add ambient light
+	//GLfloat ambientColor[] = {0.0f, 0.0f, 0.0f, 0.0f}; //Color (0.2, 0.2, 0.2)
+	//glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientColor);
+	
+	////Add positioned light
+	//GLfloat lightColor0[] = {1.0f, 1.0f, 1.0f, 1.0f}; //Color (0.5, 0.5, 0.5)
+	//GLfloat lightPos0[] = {4.0f, 0.0f, 8.0f, 1.0f}; //Positioned at (4, 0, 8)
+	//glLightfv(GL_LIGHT0, GL_DIFFUSE, lightColor0);
+	//glLightfv(GL_LIGHT0, GL_POSITION, lightPos0);
+	//
+	////Add directed light
+	//GLfloat lightColor1[] = {1.0f, 1.0f, 1.0f, 1.0f}; //Color (0.5, 0.2, 0.2)
+	////Coming from the direction (-1, 0.5, 0.5)
+	//GLfloat lightPos1[] = {-1.0f, 0.5f, 0.5f, 0.0f};
+	//glLightfv(GL_LIGHT1, GL_DIFFUSE, lightColor1);
+	//glLightfv(GL_LIGHT1, GL_POSITION, lightPos1);
+
+
+	/* The Object that can be seen in the screen*/
+
+	// Start of Object Code //
+
+	glPushMatrix(); /* Isolate 2 Objects */
+
+	Angle += 0.5; /*Increament by 10*/
+	glTranslatef( 1.0 , 0.0, 0.0 ); /* Object Position on screen */
+	glRotatef( Angle, 0.0, 1.0, 0.0);/* Object Rotation */
+	glRotatef( AngleY, 0.0, 1.0, 0.0);/* Object Rotation */
+	glRotatef( AngleX, 1.0, 0.0, 0.0);/* Object Rotation */
+		
+	glColor3f(red,green,blue);
+	glutSolidCube(1.0);			
+			glPopMatrix();
+
+
+			glPushMatrix(); /* Isolate 2 Objects */
+
+	Angle += 0.5; /*Increament by 10*/
+	glTranslatef( -1.0 , 0.0, 0.0 ); /* Object Position on screen */
+	glRotatef( Angle, 0.0, -1.0, 0.0);/* Object Rotation */
+	glRotatef( AngleY, 0.0, 1.0, 0.0);/* Object Rotation */
+	glRotatef( AngleX, 1.0, 0.0, 0.0);/* Object Rotation */
+		glRotatef(90, 90.0, 0.0, 0.0);
+				/* Closing Isolation */
+				// End of Object Code //
+	glColor3f(RED,GREEN,BLUE);
+	glutWireSphere(1.0, 30, 30);
+
+	glutSwapBuffers();
+}
+
+void ResizeWindow(int w, int h)
+{
+	float ratio = 1.0 * w / h;
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+
+	glViewport(0, 0, w, h);
+
+	/* 30 = angle; 1 = close distance object that i can see; 
+	1000 = farthest distance object that i can see */
+	gluPerspective(15.0, ratio, 1, 1000); 
+
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+
+	/* first 3 nos. = x; position of the camera */
+	/* second 3 nos. = y; where the camera is looking */
+	/* third 3 nos. = z; tilting */
+	//gluLookAt( 0.0, 0.0, 10.0, 0.0, 0.0, 0.0, 5.0, 1.0, 0.0);
+}
+
+void Timer(int extra)
+{
+	glutPostRedisplay();
+	glutTimerFunc( 10, Timer, extra); /* 10 is in miliseconds*/
+}
+
+void
+display(void)
+{
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+  GameScene();
+  glutSwapBuffers();
+}
+
+void Keys(unsigned char key, int x, int y)
+{
+  switch(key)
+  {
+    case 'r':
+				 red = 1.0;
+				green = 0.0;
+				blue = 0.0; break;
+
+    case 'g':
+				red = 0.0;
+				green = 1.0;
+				blue = 0.0; break;
+    
+    case 'b':
+				red = 0.0;
+				green = 0.0;
+				blue = 1.0; break;
+
+    case 'R':
+				RED = 1.0;
+				GREEN = 0.0;
+				BLUE = 0.0; break;
+
+    case 'G':
+				RED = 0.0;
+				GREEN = 1.0;
+				BLUE = 0.0; break;
+    
+    case 'B':
+				RED = 0.0;
+				GREEN = 0.0;
+				BLUE = 1.0; break;
+  }
+}
+
+
+void SpecialKeys(int key, int x, int y)
+{
+  switch(key)
+  {
+    case GLUT_KEY_UP:
+      AngleX -= 1.0;
+      break;
+
+    case GLUT_KEY_DOWN:
+      AngleX += 1.0;
+      break;
+
+    case GLUT_KEY_LEFT:
+      AngleY -= 1.0;
+      break;
+
+    case GLUT_KEY_RIGHT:
+      AngleY += 1.0;
+      break;
+  }
+}
+
+void main(int argc, char**argv)
+{
+	/* OpenGL Setup */
+	glutInit(&argc, argv);
+	glutInitDisplayMode(GLUT_DEPTH |GLUT_DOUBLE | GLUT_RGBA);
+
+	/* Drawing Window */
+	glutInitWindowPosition(0, 0);
+	glutInitWindowSize(800, 600);
+	glutCreateWindow( "Hellow OpenGL" );
+	glutReshapeFunc(ResizeWindow);
+	initRendering();
+
+	/* Game Scene */
+	glutDisplayFunc(GameScene);
+
+	//glutIdleFunc(GameScene);
+	glutTimerFunc( 0, Timer , 0 );
+
+	/* Lightning */
+	glEnable(GL_LIGHT0);
+	glEnable(GL_LIGHTING);
+	glEnable(GL_NORMALIZE);
+
+	/* Enables keyboard controls */
+	glutKeyboardFunc(Keys);
+	 glutSpecialFunc(SpecialKeys);
+
+	/* Use depth buffering for hidden surface elimination. */
+	glEnable(GL_DEPTH_TEST);
+
+	/* Loops the GameScene */
+	glutMainLoop();
+}
